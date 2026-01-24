@@ -10,7 +10,8 @@ Progetto di sviluppo di un Synth ibrido digitale/analogico con generazione dei s
   ### SEZIONI CIRCUITALI
   - **Encoder di Tastiera:** Controllata da ATmega328 per la scansione della matrice di keybed (Fatar), rilevamento dinamica, aftertouch ed eventuali controlli di tastiera (pitch wheel). 
   - **Interfaccia comandi:** Con o senza mocrocontrollore dedicato, in base alla complessità e tipologia dei comandi da gestire. Al fine di mantenere la compatibilità e intercambiabilità delle sezioni circuitali (per realizzazione versioni diverse di strumenti) ha comunque più senso utilizzare un microcontrollore dedicato anche per le configurazioni più semplici (visto il costo irrisorio).
-  - **Main Board:** Sezione di controllo generale dello strumento,del routing dei moduli voce, della comunicazione con l'esterno (MIDI, CV, SYNC), ecc... 
+  - **Main Board:** Sezione di controllo generale dello strumento,del routing dei moduli voce, della comunicazione con l'esterno (MIDI, CV, SYNC), ecc...
+  - **Moduli Voce:** Ogni modulo voce, basato su un RP2040, può controllare fino a 6 DCO ibridi, 2 DCO wavetable, 2 LFO e 3 generatori di inviluppo. 
 
 ## ORGANIZZAZIONE SVILUPPO FW
 - Il Fw viene sviluppato e testato per ogni modulo o sezione circuitale procedendo per step in modo da testare singolarmemnte i moduli e procedere progressivamente allo sviluppo.
