@@ -2,18 +2,15 @@
 Progetto di sviluppo di un Synth ibrido digitale/analogico con generazione dei suoni tramite DCO controllati da microcontrollori RP2040
 
 ## ARCHITETTURA GENERALE
-La struttura è di tipo "modulare" e può essere composta da un numero massimo di 8 moduli connessi su un bus parallelo proprietario.
-Ogni modulo voce può controllare un massimo di 8 DCO 2 Wave Table, 2 LFO e 3 generatori di inviluppo a 8 fasi (modello ispirato al sistema di modulazione di fase implementato sulla serie CASIO CZ).
-Un singolo modulo dovrebbe bastare per generare suoni e inviluppi di uno strumento di tipo "parafonico" a 4 voci con 2 DCO/voce (con RP2040) o 3 DCO/voce (con RP2350).
+- La struttura è di tipo "modulare" e in questa prima versione può ospitare un numero massimo di 8 moduli voce connessi su un bus parallelo proprietario.
+- L'HW a livello schematico è organizzato a "sezioni circuitali", a livello di ingegnerizzazione si può decidere se realizzare delle PCB separate e interconnesse (una per ogni sezione) o raggruppare più sezioni su singole PCB (in base alle scelte costruttive)
+- Ogni modulo voce può controllare un massimo di 6 DCO ibridi, 2 DCO Wave Table, 2 LFO e 3 generatori di inviluppo multifase (ispirato agli inviluppi del CASIO CZ101) e relativi VCF e VCA
+- Un singolo modulo dovrebbe anche bastare per generare suoni e inviluppi di uno strumento di tipo "parafonico" a 4 voci con 2 DCO/voce (utilizzando RP2350)
+  
+  ### SEZIONI CIRCUITALI
+  - **Encoder di Tastiera:** Controllata da ATmega328 per la scansione della matrice di keybed (Fatar), rilevamento dinamica, aftertouch ed eventuali controlli di tastiera (pitch wheel). 
+  - **Interfaccia comandi:** Con o senza mocrocontrollore dedicato, in base alla complessità e tipologia dei comandi da gestire. Al fine di mantenere la compatibilità e intercambiabilità delle sezioni circuitali (per realizzazione versioni diverse di strumenti) ha comunque più senso utilizzare un microcontrollore dedicato anche per le configurazioni più semplici (visto il costo irrisorio).
+  - **Main Board:** Sezione di controllo generale dello strumento,del routing dei moduli voce, della comunicazione con l'esterno (MIDI, CV, SYNC), ecc... 
 
-## Projects
+## 
 
-### [Guitar](../master/guitar)
-
-* *Project type: Arduino IDE (.ino)*
-
-Simple "guitar" where I used a distance sensor to map distance to a tone and play it through a piezo. You can read more about this project on my [blog](http://engineerish.com/post/148459701886/arduino-guitar).
-
-### [Party Glasses](../master/party-glasses)
-
-* *Project type: Arduino IDE (.ino)*
